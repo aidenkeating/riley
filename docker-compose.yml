@@ -1,0 +1,15 @@
+mongodb:
+  image: mongo
+  hostname: mongodb
+  expose:
+    - "27017"
+
+todo-app:
+  build: ./todo-app/
+  hostname: todo-app
+  links:
+    - mongodb
+  environment:
+    - MONGODB_PORT=mongodb:27017
+  ports:
+    - "8081:8080"
